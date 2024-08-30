@@ -273,6 +273,9 @@ document.getElementById('startBtn').addEventListener('click', async () => {
             }, 2000);
         });
     });
+   startBtn.classList.remove('hidden');
+    keyCountSelect.classList.remove('hidden');
+    startBtn.disabled = false;
 });
 
 document.getElementById('creatorChannelBtn').addEventListener('click', () => {
@@ -371,5 +374,5 @@ function sleep(ms) {
 }
 
 function delayRandom() {
-    return Math.random() / 3+ 1;
+    return Math.random() / 3 + 1;
 }
