@@ -371,5 +371,5 @@ function sleep(ms) {
 }
 
 function delayRandom() {
-    return Math.random() / 2 + 0.5;
+    return Math.random() / 2 + 1;
 }
