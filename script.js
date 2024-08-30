@@ -211,6 +211,9 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 
     progressBar.style.width = '100%';
     progressText.innerText = '100%';
+    
+       const completionSound = document.getElementById('completionSound');
+    completionSound.play();
 
     if (keys.length > 1) {
         const keyItemsPromises = keys.filter(key => key).map(async (key, index) => {
