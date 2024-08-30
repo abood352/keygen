@@ -1,62 +1,64 @@
-const defaultLanguage = document.documentElement.getAttribute('lang')
+const defaultLanguage = document.documentElement.getAttribute('lang');
 const gamePromoConfigs = {
-    ChainCube2048: {
-        appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
-        promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
-        eventsDelay: 20,
-        attemptsNumber: 10
-    },
-    TrainMiner: {
-        appToken: '82647f43-3f87-402d-88dd-09a90025313f',
-        promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
-        eventsDelay: 20000,
-        attemptsNumber: 10
-    },
-    MergeAway: {
-        appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
-        promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
-        eventsDelay: 20000,
-        attemptsNumber: 10
-    },
-    TwerkRace: {
-        appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
-        promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
-        eventsDelay: 20000,
-        attemptsNumber: 10
-    },
-    Polysphere: {
-        appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
-        promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
-        eventsDelay: 20000,
-        attemptsNumber: 20
-    },
-    MowandTrim: {
-        appToken: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
-        promoId: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
-        eventsDelay: 20000,
-        attemptsNumber: 20
-    },
-    CafeDash: {
-        appToken: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
-        promoId: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
-        eventsDelay: 23000,
-        attemptsNumber: 16
-    },
-    GangsWars: {
-        appToken: 'b6de60a0-e030-48bb-a551-548372493523',
-        promoId: 'c7821fa7-6632-482c-9635-2bd5798585f9',
-        eventsDelay: 40000,
-        attemptsNumber: 23
-    }, 
-    Zoopolis: {
-        appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
-        promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
-        eventsDelay: 21000,
-        attemptsNumber: 23
+   
+        ChainCube2048: {
+            appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
+            promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
+            eventsDelay: 20,
+            attemptsNumber: 10
+        },
+        TrainMiner: {
+            appToken: '82647f43-3f87-402d-88dd-09a90025313f',
+            promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
+            eventsDelay: 20,
+            attemptsNumber: 10
+        },
+        MergeAway: {
+            appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
+            promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
+            eventsDelay: 20,
+            attemptsNumber: 10
+        },
+        TwerkRace: {
+            appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+            promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+            eventsDelay: 20,
+            attemptsNumber: 10
+        },
+        Polysphere: {
+            appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+            promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
+            eventsDelay: 20,
+            attemptsNumber: 20
+        },
+        MowandTrim: {
+            appToken: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+            promoId: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
+            eventsDelay: 20,
+            attemptsNumber: 20
+        },
+        CafeDash: {
+            appToken: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
+            promoId: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
+            eventsDelay: 23,
+            attemptsNumber: 16
+        },
+        GangsWars: {
+            appToken: 'b6de60a0-e030-48bb-a551-548372493523',
+            promoId: 'c7821fa7-6632-482c-9635-2bd5798585f9',
+            eventsDelay: 40,
+            attemptsNumber: 23
+        }, 
+        Zoopolis: {
+            appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+            promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+            eventsDelay: 21,
+            attemptsNumber: 23
+        }
     }
-};
 
-let currentAppConfig = Object.values(gamePromoConfigs)[0];
+
+let currentAppConfig = gamePromoConfigs.ChainCube2048; // تعيين قيمة افتراضية صحيحة
 var currentLanguage;
 var keygenActive = false;
 
@@ -73,6 +75,11 @@ document.addEventListener('DOMContentLoaded', () => {
     gameSelect.addEventListener('change', () => {
         const selectedGame = gameSelect.value;
         currentAppConfig = gamePromoConfigs[selectedGame];
+    });
+
+    languageSelect.addEventListener('change', () => {
+        const newLanguage = languageSelect.value;
+        switchLanguage(newLanguage);
     });
 });
 
@@ -117,16 +124,11 @@ async function switchLanguage(language) {
         applyTranslations(translations);
         currentLanguage = language;
         localStorage.setItem('language', language);
-        languageSelect.value = language;
+        document.getElementById('languageSelect').value = language;
     } catch (error) {
         console.error('Error switching language:', error);
     }
 }
-
-languageSelect.addEventListener('change', () => {
-    const newLanguage = languageSelect.value;
-    switchLanguage(newLanguage);
-});
 
 document.getElementById('startBtn').addEventListener('click', async () => {
     const startBtn = document.getElementById('startBtn');
@@ -211,9 +213,11 @@ document.getElementById('startBtn').addEventListener('click', async () => {
 
     progressBar.style.width = '100%';
     progressText.innerText = '100%';
-    
-       const completionSound = document.getElementById('completionSound');
-    completionSound.play();
+
+    const completionSound = document.getElementById('completionSound');
+    completionSound.play().catch((error) => {
+        console.error('Failed to play sound:', error);
+    });
 
     if (keys.length > 1) {
         const keyItemsPromises = keys.filter(key => key).map(async (key, index) => {
@@ -243,6 +247,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     generatedKeysTitle.classList.remove('hidden');
     keyCountLabel.innerText = await getTranslation('selectKeyCountLabel');
     document.getElementById("gameSelect").disabled = false;
+
     document.querySelectorAll('.copyKeyBtn').forEach(button => {
         button.addEventListener('click', (event) => {
             const key = event.target.getAttribute('data-key');
@@ -256,6 +261,7 @@ document.getElementById('startBtn').addEventListener('click', async () => {
             });
         });
     });
+
     copyAllBtn.addEventListener('click', async (event) => {
         const keysText = keys.filter(key => key).join('\n');
         navigator.clipboard.writeText(keysText).then(async () => {
@@ -267,10 +273,6 @@ document.getElementById('startBtn').addEventListener('click', async () => {
             }, 2000);
         });
     });
-
-    startBtn.classList.remove('hidden');
-    keyCountSelect.classList.remove('hidden');
-    startBtn.disabled = false;
 });
 
 document.getElementById('creatorChannelBtn').addEventListener('click', () => {
@@ -291,12 +293,11 @@ async function login(clientId) {
     });
     const data = await response.json();
     if (!response.ok) {
-        if (data.error_code == "TooManyIpRequest") {
+        if (data.error_code === "TooManyIpRequest") {
             throw new Error('You have reached the rate limit. Please wait a few minutes and try again.');
         } else {
             throw new Error(data.error_message || 'Failed to log in');
         }
-        
     }
     return data.clientToken;
 }
@@ -346,9 +347,6 @@ async function emulateProgress(clientToken) {
         })
     });
     const data = await response.json();
-    // if (!response.ok) {
-    //     throw new Error(data.error_message || 'Failed to register event');
-    // }
     return data.hasCode;
 }
 
